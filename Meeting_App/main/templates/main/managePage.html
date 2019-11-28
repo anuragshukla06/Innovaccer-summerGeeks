@@ -1,0 +1,50 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+
+{% if NO_GUESTS == 0 %}
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Guest Name</th>
+                <th scope="col">Guest Phone</th>
+                <th scope="col">Guest Email</th>
+                <th scope="col">Check In Time</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for guest in guests %}
+            <tr>
+                <th scope="row">{{guest.guest_name}}</th>
+                <td>
+                    {{guest.guest_phone}}
+                </td>
+                <td>
+                    {{guest.guest_mail}}
+                </td>
+                <td>
+                    {{guest.check_in_time}}
+                </td>
+                <td>
+                    <a class="btn btn-info" href="{%url 'kick_out_guest_url' email token guest.pk%}"
+                        style="text-decoration: none; color:inherit;">
+                        Kick Out
+                    </a>
+                </td>
+            </tr>
+            <!-- </a> -->
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% elif NO_GUESTS  == 1 %}
+
+    <div class="container" align="center">
+        <h1>No Guests Checked in so far.</h1>
+    </div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<h2 style="text-align:center; margin-top:100px;">Meeting Manager </h2>
+<div style="margin:150px; margin-top:150px;">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Guest</h5>
+                    <p class="card-text">The guests can check in and check out of the meetings. Token is required to check out of a particular meeting.</p>
+                    <div class="container" >
+
+                        <a href="{%url 'check_in_url'%}" class="btn btn-primary">Check In</a>
+                        <a href="{%url 'check_out_url'%}" class="btn btn-primary">Check Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Host</h5>
+                    <p class="card-text">The hosts of the meeting can manage and create meeting. Token is required to manage a particular meeting.</p>
+                    <div class="container" >
+
+                        <a href="{%url 'host_register_url'%}" class="btn btn-primary">Create a Meeting</a>
+                        <a href="{%url 'manage_form_url'%}" class="btn btn-primary">Manage Meeting</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}

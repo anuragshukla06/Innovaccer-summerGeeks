@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Meeting Created!</h4>
+    <p>
+        The meeting is successfully created!<br>
+        <h2>Your Token is:</h2> <h3>{{Token}}</h3>
+        Please keep the token as it will be required to manage meetings.
+        <!--      TODO: Add more text ot information here.-->
+    </p>
+    <hr>
+    <p class="mb-0">The meeting now can be seen in existing meetings</p><br>
+    <a href="{%url 'home'%}">Home</a>
+</div>
+{% endblock %}

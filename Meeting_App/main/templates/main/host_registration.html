@@ -1,0 +1,76 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="container" style="margin-top:150px; padding: 0 250px;">
+    <form method="post">
+        {%csrf_token%}
+        <h4 style="text-align:center; margin: 50px" >Host Registration</h4>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputMeetingName">Meeting Name</label>
+                <input type="text" class="form-control" id="inputMeetingName" placeholder="Enter Meeting Name" name="meeting_name" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputHostName">Host Name</label>
+                <input type="text" class="form-control" id="inputHostName" placeholder="Enter Host Name" name="host_name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="tel" class="form-control" id="inputPhone" placeholder="Enter Phone Number" name="phone" onkeyup="checkMobile()" pattern="[0-9]{10}" required>
+            <p id="mobile_error" style="color:#F11F0E">Please enter a vaid 10-digit number.</p>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address" required>
+        </div>
+        <center>
+            <button type="submit" class="btn btn-primary">Create Meeting</button>
+        </center>
+    </form>
+
+    {% if EXISTING_MEET_FLAG == 1 %}
+        <br><br>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Meeting Already Exists!</strong>  Another meeting with same email and meeting name already exists :( Please enter another email or meeting name.
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+    {% elif EXISTING_MEET_FLAG == 2 %}
+        <br><br>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Please Enter valid Credentials</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+
+{% endif %}
+
+
+</div>
+
+
+<script>
+    function checkMobile() {
+        var inp = document.getElementById("inputPhone");
+        var msg = document.getElementById("mobile_error");
+        num = inp.value;
+        if (num.length != 10 || isNaN(num)){
+            msg.innerHTML = "Please enter a vaid 10-digit number."
+            msg.style.color = "#F11F0E";
+
+        } else{
+            msg.innerHTML = "Valid Number."
+            msg.style.color = "#31F10E";
+        }
+
+    }
+</script>
+
+
+{% endblock %}

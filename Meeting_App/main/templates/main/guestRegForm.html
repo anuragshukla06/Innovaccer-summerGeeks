@@ -1,0 +1,76 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="container" style="margin-top:150px; padding:0 250px;">
+    <h4 style="text-align:center;">For Meeting: </h4> <h5 style="text-align:center;">{{meeting.meeting_name}} (Host: {{meeting.host.host_name}})</h5>
+
+    <form method="post">
+        {%csrf_token%}
+        <div class="form-group">
+            <label for="inputName">Your Name</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Enter Your Name" name="guest_name" required>
+        </div>
+        <div class="form-group">
+            <label for="inputPhone">Phone</label>
+            <input type="tel" class="form-control" id="inputPhone" placeholder="Enter Phone Number" name="guest_phone"  pattern="[01236789][0-9]{9}" required onkeyup="checkMobile()">
+            <p id="mobile_error" style="color:#F11F0E">Please enter a vaid 10-digit number.</p>
+            <span id="message"></span>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Enter Your Email" name="guest_mail" required>
+        </div>
+        <div class="form-group">
+            <input type="hidden" class="form-control"  value="{{meeting_id}}" name="meeting_id">
+        </div>
+
+    <center>
+        <button type="submit" class="btn btn-primary">Check In</button>
+    </center>
+</form>
+    <br><br>
+    {% if ALREADY_CHECKED_IN == 1 %}
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Guest Already checked In!</strong>  Guest is already checked In! Please first <a href="{% url 'check_out_url' %}">check out</a> to join other meeting.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    {% elif ALREADY_CHECKED_IN == 2 %}
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Please Enter a 10 digit Number</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    {% elif ALREADY_CHECKED_IN == 3 %}
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Please Enter valid credentials</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+
+    {% endif %}
+</div>
+
+<script>
+    function checkMobile() {
+        var inp = document.getElementById("inputPhone");
+        var msg = document.getElementById("mobile_error");
+        num = inp.value;
+        if (num.length != 10 || isNaN(num)){
+            msg.innerHTML = "Please enter a vaid 10-digit number."
+            msg.style.color = "#F11F0E";
+
+        } else{
+            msg.innerHTML = "Valid Number."
+            msg.style.color = "#31F10E";
+        }
+
+    }
+</script>
+
+
+{% endblock %}

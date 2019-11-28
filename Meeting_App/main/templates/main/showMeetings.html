@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Meeting Id</th>
+            <th scope="col">Meeting Name</th>
+            <th scope="col">Host Name</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for meeting in meetings %}
+        <tr>
+            <th scope="row">{{meeting.pk}}</th>
+            <td>
+                {{meeting.meeting_name}}
+            </td>
+            <td>
+                {{meeting.host.host_name}}
+            </td>
+            <td>
+                <a class="btn btn-info" href="{%url 'guestRegForm_url' meeting.pk%}"
+                    style="text-decoration: none; color:inherit;">
+                    Check In
+                </a>
+            </td>
+        </tr>
+        <!-- </a> -->
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
