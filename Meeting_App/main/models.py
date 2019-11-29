@@ -5,7 +5,7 @@ import datetime
 
 class Host(models.Model):
     host_name = models.CharField(max_length=100)
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=10)
     email = models.CharField(max_length=100)
 
 
@@ -18,7 +18,7 @@ class Meeting(models.Model):
 
 class Guest(models.Model):
     guest_name = models.CharField(max_length=100)
-    guest_phone = models.IntegerField()
+    guest_phone = models.CharField(max_length=10)
     guest_mail = models.EmailField(max_length=100)
     checked_in = models.BooleanField(default=True)
     check_in_time = models.DateTimeField(default=datetime.datetime.now())

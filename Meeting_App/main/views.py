@@ -10,8 +10,8 @@ from twilio.rest import Client
 
 
 # Create your views here.
-account_sid = 'Enter Twilio sid'
-auth_token = 'Enter Twilio Auth Token'
+account_sid = 'ACce78497a4095c6d2166193ba17149ab7'
+auth_token = '99935c13fba0c8893067fc6ec67a0b7d'
 client = Client(account_sid, auth_token)
 
 
@@ -71,7 +71,8 @@ def guestRegForm(request, meeting_pk):
             try:
                 guest = models.Guest.objects.get(guest_mail=guest_mail)
                 if guest.checked_in == True:
-                    return render(request, 'main/guestRegForm.html', {'ALREADY_CHECKED_IN': 1})
+                    return render(request, 'main/guestRegForm.html', {'ALREADY_CHECKED_IN': 1, "meeting": meeting
+            , "meeting_id": meeting_pk})
                 else:
                     guest.checked_in = True
                     guest.check_in_time = datetime.datetime.now()
@@ -213,9 +214,9 @@ def sendEmailHost(guest):
 
     try:
         message = client.messages.create(
-            from_='Enter Your Phone Here',
+            from_='+12055579239',
             body=plain_text_msg,
-            to=host_mail
+            to='+917526812579'
         )
     except Exception as e:
         print(e)
