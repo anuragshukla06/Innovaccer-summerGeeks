@@ -1,7 +1,7 @@
 # Innovaccer-summerGeeks
 The website is live at: https://summer-geeks.herokuapp.com/
 
-Please use above url to run the app. The uploaded code doesn't contain API keys and passwords, so to see the app in actions and save your time, please head to the link.
+Please use above url to run the app. The uploaded code doesn't contain API keys and passwords, so to see the app in action quickly and save your time, please head to the link.
 
 The main features of the app:
 * The app multiple hosts to create meeting.
