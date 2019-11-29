@@ -10,8 +10,9 @@ from twilio.rest import Client
 
 
 # Create your views here.
-account_sid = 'ACce78497a4095c6d2166193ba17149ab7'
-auth_token = '99935c13fba0c8893067fc6ec67a0b7d'
+account_sid = '' # Add your twilio sid here.
+
+auth_token = '' # Add auth token here.
 client = Client(account_sid, auth_token)
 
 
